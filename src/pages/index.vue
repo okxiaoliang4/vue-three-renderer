@@ -16,6 +16,14 @@ useRafFn(() => {
     meshRef.value.mesh.rotation.y += 0.01
   }
 })
+
+const color = ref(0x00FF00)
+
+function toggleColor() {
+  color.value = color.value === 0x00FF00 ? 0xFF0000 : 0x00FF00
+}
+
+useIntervalFn(toggleColor, 1000)
 </script>
 
 <template>
@@ -24,7 +32,7 @@ useRafFn(() => {
   <Scene ref="sceneRef">
     <Mesh ref="meshRef">
       <BoxGeometry />
-      <MeshBasicMaterial :pameters="{ color: 0x00FF00 }" />
+      <MeshBasicMaterial :pameters="{ color }" />
     </Mesh>
   </Scene>
 
