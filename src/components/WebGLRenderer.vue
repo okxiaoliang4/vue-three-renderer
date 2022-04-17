@@ -36,13 +36,32 @@ watchEffect(() => {
   renderer.value?.setSize(props.width, props.height)
 })
 
-useRafFn(() => {
-  if (!props.scene)
-    console.warn('scene is not defined')
-  else if (!props.camera)
-    console.warn('camera is not defined')
-  else
-    renderer.value?.render(props.scene, props.camera)
+const pausable = useRafFn(() => {
+  renderer.value?.render(props.scene!, props.camera!)
+}, {
+  immediate: false,
+})
+
+const scope = effectScope()
+
+nextTick(() => {
+  scope.run(() => {
+    watchEffect(() => {
+      if (!props.scene) {
+        console.warn('scene is not defined')
+        pausable.pause()
+      }
+      else if (!props.camera) {
+        console.warn('camera is not defined')
+        pausable.pause()
+      }
+      else { pausable.resume() }
+    })
+  })
+})
+
+tryOnScopeDispose(() => {
+  scope.stop()
 })
 
 defineExpose({
