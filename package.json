@@ -1,6 +1,6 @@
 {
-  "private": true,
   "name": "vite-three-renderer",
+  "private": true,
   "packageManager": "pnpm@6.32.3",
   "scripts": {
     "build": "vite build",
