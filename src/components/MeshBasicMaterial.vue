@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import type { Material, MeshBasicMaterialParameters } from 'three'
-import type { PropType, Ref } from 'vue'
+import type { MeshBasicMaterialParameters } from 'three'
+import type { PropType } from 'vue'
 import { materialSymbol } from './symbol'
 import { useMeshBasicMaterial } from '~/composables/useMeshBasicMaterial'
+import { useSyncInject } from '~/composables/useSyncInject'
 
 const props = defineProps({
   pameters: Object as PropType<MeshBasicMaterialParameters>,
@@ -10,9 +11,8 @@ const props = defineProps({
 
 const material = useMeshBasicMaterial(props)
 
-const parentMaterialRef = inject<Ref<Material>>(materialSymbol)
-if (parentMaterialRef)
-  parentMaterialRef.value = material.value
+// sync material to parent
+useSyncInject(materialSymbol, material)
 
 defineExpose({
   material,

@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-import type { BufferGeometry } from 'three'
-import type { Ref } from 'vue'
 import { geometrySymbol } from './symbol'
 import { useBoxGeometry } from '~/composables/useBoxGeometry'
+import { useSyncInject } from '~/composables/useSyncInject'
 
 const props = defineProps({
   width: Number,
@@ -16,11 +15,7 @@ const props = defineProps({
 const geometry = useBoxGeometry(props)
 
 // sync geometry to parent
-const parentGeometryRef = inject<Ref<BufferGeometry | null>>(geometrySymbol)
-watchEffect(() => {
-  if (parentGeometryRef)
-    parentGeometryRef.value = geometry.value
-})
+useSyncInject(geometrySymbol, geometry)
 
 defineExpose({
   geometry,
