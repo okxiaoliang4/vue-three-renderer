@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import type { BufferGeometry } from 'three'
-import { BoxGeometry } from 'three'
 import type { Ref } from 'vue'
 import { geometrySymbol } from './symbol'
+import { useBoxGeometry } from '~/composables/useBoxGeometry'
 
 const props = defineProps({
   width: Number,
@@ -13,11 +13,14 @@ const props = defineProps({
   depthSegments: Number,
 })
 
-const geometry = new BoxGeometry(props.width, props.height, props.depth, props.widthSegments, props.heightSegments, props.depthSegments)
+const geometry = useBoxGeometry(props)
 
-const parentGeometryRef = inject<Ref<BufferGeometry>>(geometrySymbol)
-if (parentGeometryRef)
-  parentGeometryRef.value = geometry
+// sync geometry to parent
+const parentGeometryRef = inject<Ref<BufferGeometry | null>>(geometrySymbol)
+watchEffect(() => {
+  if (parentGeometryRef)
+    parentGeometryRef.value = geometry.value
+})
 
 defineExpose({
   geometry,
