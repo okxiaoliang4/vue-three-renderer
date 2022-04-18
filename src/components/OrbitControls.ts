@@ -18,8 +18,9 @@ export default defineComponent({
     watchEffect(() => {
       controls.value = new ThreeOrbitControls(props.camera, props.renderer)
     })
+
     expose({ controls })
 
-    return () => {}
+    return () => null
   },
 })

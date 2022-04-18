@@ -4,14 +4,14 @@
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    BoxGeometry: typeof import('./src/components/BoxGeometry.vue')['default']
-    Mesh: typeof import('./src/components/Mesh.vue')['default']
-    MeshBasicMaterial: typeof import('./src/components/MeshBasicMaterial.vue')['default']
+    BoxGeometry: typeof import('./src/components/BoxGeometry.ts')['default']
+    Mesh: typeof import('./src/components/Mesh.ts')['default']
+    MeshBasicMaterial: typeof import('./src/components/MeshBasicMaterial.ts')['default']
     OrbitControls: typeof import('./src/components/OrbitControls.ts')['default']
-    PerspectiveCamera: typeof import('./src/components/PerspectiveCamera.vue')['default']
+    PerspectiveCamera: typeof import('./src/components/PerspectiveCamera.ts')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Scene: typeof import('./src/components/Scene.vue')['default']
+    Scene: typeof import('./src/components/Scene.ts')['default']
     Symbol: typeof import('./src/components/symbol.ts')['default']
     WebGLRenderer: typeof import('./src/components/WebGLRenderer.vue')['default']
   }
