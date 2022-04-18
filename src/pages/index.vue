@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import type SceneVue from '~/components/Scene.vue'
 import type PerspectiveCamera from '~/components/PerspectiveCamera.vue'
 import type MeshVue from '~/components/Mesh.vue'
@@ -24,10 +23,7 @@ function toggleColor() {
 useIntervalFn(toggleColor, 1000)
 
 onMounted(() => {
-  const controls = new OrbitControls(cameraRef.value!.camera, rendererRef.value?.renderer?.domElement)
-
   useRafFn(() => {
-    controls.update()
     if (meshRef.value) {
       meshRef.value.mesh.rotation.x += 0.01
       meshRef.value.mesh.rotation.y += 0.01
@@ -38,7 +34,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <WebGLRenderer ref="rendererRef" :camera="cameraRef?.camera" :scene="sceneRef?.scene" :width="width" :height="height" />
+  <WebGLRenderer
+    ref="rendererRef"
+    :camera="cameraRef?.camera"
+    :scene="sceneRef?.scene"
+    :width="width"
+    :height="height"
+  />
 
   <Scene ref="sceneRef">
     <Mesh ref="meshRef">
@@ -46,6 +48,8 @@ onMounted(() => {
       <MeshBasicMaterial :pameters="materialParameters" />
     </Mesh>
   </Scene>
+
+  <OrbitControls v-if="cameraRef?.camera" :camera="cameraRef.camera" :renderer="rendererRef?.renderer?.domElement" />
 
   <PerspectiveCamera ref="cameraRef" :fov="75" :aspect="width / height" :near="0.1" :far="1000" :position-z="5" />
 </template>

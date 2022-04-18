@@ -36,6 +36,7 @@ export default defineConfig({
     // https://github.com/antfu/vite-plugin-components
     Components({
       dts: true,
+      extensions: ['vue', 'ts'],
     }),
 
     // https://github.com/antfu/unocss

@@ -7,10 +7,12 @@ declare module '@vue/runtime-core' {
     BoxGeometry: typeof import('./src/components/BoxGeometry.vue')['default']
     Mesh: typeof import('./src/components/Mesh.vue')['default']
     MeshBasicMaterial: typeof import('./src/components/MeshBasicMaterial.vue')['default']
+    OrbitControls: typeof import('./src/components/OrbitControls.ts')['default']
     PerspectiveCamera: typeof import('./src/components/PerspectiveCamera.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Scene: typeof import('./src/components/Scene.vue')['default']
+    Symbol: typeof import('./src/components/symbol.ts')['default']
     WebGLRenderer: typeof import('./src/components/WebGLRenderer.vue')['default']
   }
 }
