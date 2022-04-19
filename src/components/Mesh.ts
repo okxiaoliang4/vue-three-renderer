@@ -1,11 +1,11 @@
 import type { BufferGeometry, Material, Scene } from 'three'
-
+import { defineComponent } from 'vue'
 import type { Ref } from 'vue'
 import { geometrySymbol, materialSymbol, sceneSymbol } from './symbol'
 import { useMesh } from '~/composables/useMesh'
 
 export default defineComponent({
-  setup(props, { expose, slots }) {
+  setup() {
     const geometry = ref() as Ref<BufferGeometry>
     const materials = ref() as Ref<Material>
 
@@ -17,8 +17,11 @@ export default defineComponent({
     provide(geometrySymbol, geometry)
     provide(materialSymbol, materials)
 
-    expose({ mesh })
-
-    return () => slots.default?.()
+    return {
+      mesh,
+    }
+  },
+  render() {
+    return this.$slots.default?.()
   },
 })

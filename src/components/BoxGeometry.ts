@@ -11,16 +11,15 @@ export default defineComponent({
     heightSegments: Number,
     depthSegments: Number,
   },
-  setup(props, { expose }) {
+  setup(props) {
     // sync geometry to parent
     const geometry = useBoxGeometry(props)
 
     useSyncInject(geometrySymbol, geometry)
 
-    expose({
+    return {
       geometry,
-    })
-
-    return () => null
+    }
   },
+  render: () => null,
 })

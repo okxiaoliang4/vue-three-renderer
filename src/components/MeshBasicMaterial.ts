@@ -9,14 +9,13 @@ export default defineComponent({
     parameters: Object as PropType<MeshBasicMaterialParameters>,
   },
 
-  setup(props, { expose }) {
+  setup(props) {
     const material = useMeshBasicMaterial({ parameters: props.parameters })
 
     // sync material to parent
     useSyncInject(materialSymbol, material)
 
-    expose({ material })
-
-    return () => null
+    return { material }
   },
+  render: () => null,
 })

@@ -2,12 +2,15 @@ import { Scene } from 'three'
 import { sceneSymbol } from './symbol'
 
 export default defineComponent({
-  setup(props, { expose, slots }) {
+  setup() {
     const scene = new Scene()
     provide(sceneSymbol, scene)
 
-    expose({ scene })
-
-    return () => slots.default?.()
+    return {
+      scene,
+    }
+  },
+  render() {
+    return this.$slots.default?.()
   },
 })

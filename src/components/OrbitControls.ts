@@ -13,13 +13,12 @@ export default defineComponent({
       type: HTMLElement,
     },
   },
-  setup(props, { expose }) {
+  setup(props) {
     const controls = useOrbitControls(props.camera, props.renderer)
 
-    expose({ controls })
-
-    return () => null
+    return { controls }
   },
+  render: () => null,
 })
 
 export function useOrbitControls(camera: MaybeRef<Camera>, renderer?: MaybeRef<HTMLElement | undefined>) {

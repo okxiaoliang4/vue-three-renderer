@@ -9,9 +9,12 @@ export default defineComponent({
 
     positionZ: Number,
   },
-  setup(props, { expose }) {
+  setup(props) {
     const { camera } = usePerspectiveCamera(props)
-    expose({ camera })
-    return () => null
+
+    return {
+      camera,
+    }
   },
+  render: () => null,
 })

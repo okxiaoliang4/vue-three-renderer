@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import type SceneVue from '~/components/Scene.vue'
-import type PerspectiveCamera from '~/components/PerspectiveCamera.vue'
-import type MeshVue from '~/components/Mesh.vue'
+import type SceneVue from '~/components/Scene'
+import type PerspectiveCameraVue from '~/components/PerspectiveCamera'
+import type MeshVue from '~/components/Mesh'
 import type WebGLRendererVue from '~/components/WebGLRenderer.vue'
 
 const width = window.innerWidth
@@ -9,7 +9,7 @@ const height = window.innerHeight
 
 const rendererRef = ref<InstanceType<typeof WebGLRendererVue>>()
 const sceneRef = ref<InstanceType<typeof SceneVue>>()
-const cameraRef = ref<InstanceType<typeof PerspectiveCamera>>()
+const cameraRef = ref<InstanceType<typeof PerspectiveCameraVue>>()
 const meshRef = ref<InstanceType<typeof MeshVue>>()
 
 const materialParameters = ref({
@@ -22,14 +22,19 @@ function toggleColor() {
 
 useIntervalFn(toggleColor, 1000)
 
+const scope = effectScope()
 onMounted(() => {
-  useRafFn(() => {
-    if (meshRef.value) {
-      meshRef.value.mesh.rotation.x += 0.01
-      meshRef.value.mesh.rotation.y += 0.01
-    }
+  scope.run(() => {
+    useRafFn(() => {
+      rendererRef.value?.renderer?.render(sceneRef.value!.scene, cameraRef.value!.camera)
+      if (meshRef.value) {
+        meshRef.value.mesh.rotation.x += 0.01
+        meshRef.value.mesh.rotation.y += 0.01
+      }
+    })
   })
 })
+onUnmounted(scope.stop)
 
 </script>
 
