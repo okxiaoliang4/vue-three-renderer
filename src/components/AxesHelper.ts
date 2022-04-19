@@ -11,14 +11,8 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const helper = useAxesHelper(props)
     const scene = inject<Scene>(sceneSymbol)
-
-    scene?.add(helper.value)
-
-    onUnmounted(() => {
-      scene?.remove(helper.value)
-    })
+    const helper = useAxesHelper(scene, props)
 
     return {
       helper,
