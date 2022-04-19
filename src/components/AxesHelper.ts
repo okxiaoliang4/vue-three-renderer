@@ -16,6 +16,10 @@ export default defineComponent({
 
     scene?.add(helper.value)
 
+    onUnmounted(() => {
+      scene?.remove(helper.value)
+    })
+
     return {
       helper,
     }
