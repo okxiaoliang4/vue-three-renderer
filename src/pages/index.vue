@@ -22,14 +22,17 @@ function toggleColor() {
 
 useIntervalFn(toggleColor, 1000)
 
+const rotationX = ref(0)
+const rotationY = ref(0)
+
 const scope = effectScope()
 onMounted(() => {
   scope.run(() => {
     useRafFn(() => {
       rendererRef.value?.renderer?.render(sceneRef.value!.scene, cameraRef.value!.camera)
       if (meshRef.value) {
-        meshRef.value.mesh.rotation.x += 0.01
-        meshRef.value.mesh.rotation.y += 0.01
+        rotationX.value += 0.01
+        rotationY.value += 0.01
       }
     })
   })
@@ -48,8 +51,15 @@ onUnmounted(scope.stop)
   />
 
   <Scene ref="sceneRef">
-    <Mesh ref="meshRef">
-      <BoxGeometry :width="1" :height="1" />
+    <Mesh ref="meshRef" :rotation-x="rotationX" :rotation-y="rotationY">
+      <BoxGeometry
+        :width="1"
+        :height="1"
+        :depth="1"
+        :width-segments="1"
+        :height-segments="1"
+        :depth-segments="1"
+      />
       <MeshBasicMaterial :parameters="materialParameters" />
     </Mesh>
   </Scene>
