@@ -4,6 +4,7 @@ import { OrbitControls as ThreeOrbitControls } from 'three/examples/jsm/controls
 import type { PropType } from 'vue'
 
 export default defineComponent({
+  name: 'OrbitControls',
   props: {
     camera: {
       type: Object as PropType<Camera>,

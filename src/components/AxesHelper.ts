@@ -3,6 +3,7 @@ import { sceneSymbol } from './symbol'
 import { useAxesHelper } from '~/composables/useAxesHelper'
 
 export default defineComponent({
+  name: 'AxesHelper',
   props: {
     size: {
       type: Number,

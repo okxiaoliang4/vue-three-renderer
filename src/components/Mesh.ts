@@ -6,6 +6,7 @@ import { useMesh } from '~/composables/useMesh'
 import { useObject3d } from '~/composables/useObject3d'
 
 export default defineComponent({
+  name: 'Mesh',
   props: {
     positionX: {
       type: Number,

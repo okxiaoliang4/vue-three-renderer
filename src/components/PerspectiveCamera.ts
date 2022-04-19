@@ -1,6 +1,7 @@
 import { usePerspectiveCamera } from '~/composables/usePerspectiveCamera'
 
 export default defineComponent({
+  name: 'PerspectiveCamera',
   props: {
     fov: Number,
     aspect: Number,

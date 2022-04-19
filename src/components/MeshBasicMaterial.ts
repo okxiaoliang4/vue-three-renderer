@@ -5,6 +5,7 @@ import { useMeshBasicMaterial } from '~/composables/useMeshBasicMaterial'
 import { useSyncInject } from '~/composables/useSyncInject'
 
 export default defineComponent({
+  name: 'MeshBasicMaterial',
   props: {
     parameters: Object as PropType<MeshBasicMaterialParameters>,
   },

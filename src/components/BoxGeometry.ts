@@ -3,6 +3,7 @@ import { useBoxGeometry } from '~/composables/useBoxGeometry'
 import { useSyncInject } from '~/composables/useSyncInject'
 
 export default defineComponent({
+  name: 'BoxGeometry',
   props: {
     width: Number,
     height: Number,
