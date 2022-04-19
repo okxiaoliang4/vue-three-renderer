@@ -6,11 +6,11 @@ import { useSyncInject } from '~/composables/useSyncInject'
 
 export default defineComponent({
   props: {
-    pameters: Object as PropType<MeshBasicMaterialParameters>,
+    parameters: Object as PropType<MeshBasicMaterialParameters>,
   },
 
   setup(props, { expose }) {
-    const material = useMeshBasicMaterial(props)
+    const material = useMeshBasicMaterial({ parameters: props.parameters })
 
     // sync material to parent
     useSyncInject(materialSymbol, material)

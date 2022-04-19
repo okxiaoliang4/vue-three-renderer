@@ -45,7 +45,7 @@ onMounted(() => {
   <Scene ref="sceneRef">
     <Mesh ref="meshRef">
       <BoxGeometry :width="1" :height="1" />
-      <MeshBasicMaterial :pameters="materialParameters" />
+      <MeshBasicMaterial :parameters="materialParameters" />
     </Mesh>
   </Scene>
 
