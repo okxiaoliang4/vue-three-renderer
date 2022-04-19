@@ -62,6 +62,7 @@ onUnmounted(scope.stop)
       />
       <MeshBasicMaterial :parameters="materialParameters" />
     </Mesh>
+    <AxesHelper />
   </Scene>
 
   <OrbitControls v-if="cameraRef?.camera" :camera="cameraRef.camera" :renderer="rendererRef?.renderer?.domElement" />
