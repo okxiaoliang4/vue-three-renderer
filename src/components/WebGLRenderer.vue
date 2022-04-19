@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import type { PerspectiveCamera, Scene } from 'three'
-import { WebGLRenderer } from 'three'
-
 import type { PropType } from 'vue'
+import { useWebGLRenderer } from '~/composables/useWebGLRenderer'
 
 const props = defineProps({
   camera: {
@@ -22,50 +21,13 @@ const props = defineProps({
 })
 
 const canvas = ref()
-const renderer = ref<WebGLRenderer>()
 
-onMounted(() => {
-  // create renderer
-  renderer.value = new WebGLRenderer({
-    canvas: canvas.value,
-  })
-})
-
-// reactive size
-watchEffect(() => {
-  renderer.value?.setSize(props.width, props.height)
-})
-
-const pausable = useRafFn(() => {
-  renderer.value?.render(props.scene!, props.camera!)
-}, {
-  immediate: false,
-})
-
-const scope = effectScope()
-
-nextTick(() => {
-  scope.run(() => {
-    watchEffect(() => {
-      if (!props.scene) {
-        console.warn('scene is not defined')
-        pausable.pause()
-      }
-      else if (!props.camera) {
-        console.warn('camera is not defined')
-        pausable.pause()
-      }
-      else { pausable.resume() }
-    })
-  })
-})
-
-tryOnScopeDispose(() => {
-  scope.stop()
+const { renderer } = useWebGLRenderer(canvas, {
+  width: props.width,
+  height: props.height,
 })
 
 defineExpose({
-  canvas,
   renderer,
 })
 </script>
