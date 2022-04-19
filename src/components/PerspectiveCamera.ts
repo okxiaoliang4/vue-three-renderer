@@ -1,4 +1,4 @@
-import { PerspectiveCamera } from 'three'
+import { usePerspectiveCamera } from '~/composables/usePerspectiveCamera'
 
 export default defineComponent({
   props: {
@@ -10,12 +10,7 @@ export default defineComponent({
     positionZ: Number,
   },
   setup(props, { expose }) {
-    const camera = new PerspectiveCamera(props.fov, props.aspect, props.near, props.far)
-
-    watchEffect(() => {
-      camera.position.z = props.positionZ ?? camera.position.z
-    })
-
+    const { camera } = usePerspectiveCamera(props)
     expose({ camera })
     return () => null
   },
