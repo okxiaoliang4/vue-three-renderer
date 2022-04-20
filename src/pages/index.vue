@@ -67,5 +67,5 @@ onUnmounted(scope.stop)
 
   <OrbitControls v-if="cameraRef?.instance" :camera="cameraRef.instance" :renderer="rendererRef?.renderer?.domElement" />
 
-  <PerspectiveCamera ref="cameraRef" :fov="75" :aspect="width / height" :near="0.1" :far="1000" :position-z="5" :rotation-x="rotationX" :rotation-y="rotationY" />
+  <PerspectiveCamera ref="cameraRef" :fov="75" :aspect="width / height" :near="0.1" :far="1000" :position-z="5" />
 </template>
