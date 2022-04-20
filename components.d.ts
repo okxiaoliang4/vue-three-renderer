@@ -6,6 +6,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AxesHelper: typeof import('./src/components/AxesHelper.ts')['default']
     BoxGeometry: typeof import('./src/components/BoxGeometry.ts')['default']
+    Camera: typeof import('./src/components/Camera.ts')['default']
     Mesh: typeof import('./src/components/Mesh.ts')['default']
     MeshBasicMaterial: typeof import('./src/components/MeshBasicMaterial.ts')['default']
     Object3D: typeof import('./src/components/Object3D.ts')['default']

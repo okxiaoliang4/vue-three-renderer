@@ -29,7 +29,7 @@ const scope = effectScope()
 onMounted(() => {
   scope.run(() => {
     useRafFn(() => {
-      rendererRef.value?.renderer?.render(sceneRef.value!.instance, cameraRef.value!.camera)
+      rendererRef.value?.renderer?.render(sceneRef.value!.instance, cameraRef.value!.instance)
       if (meshRef.value) {
         rotationX.value += 0.01
         rotationY.value += 0.01
@@ -44,7 +44,7 @@ onUnmounted(scope.stop)
 <template>
   <WebGLRenderer
     ref="rendererRef"
-    :camera="cameraRef?.camera"
+    :camera="cameraRef?.instance"
     :scene="sceneRef?.instance"
     :width="width"
     :height="height"
@@ -65,7 +65,7 @@ onUnmounted(scope.stop)
     <AxesHelper />
   </Scene>
 
-  <OrbitControls v-if="cameraRef?.camera" :camera="cameraRef.camera" :renderer="rendererRef?.renderer?.domElement" />
+  <OrbitControls v-if="cameraRef?.instance" :camera="cameraRef.instance" :renderer="rendererRef?.renderer?.domElement" />
 
-  <PerspectiveCamera ref="cameraRef" :fov="75" :aspect="width / height" :near="0.1" :far="1000" :position-z="5" />
+  <PerspectiveCamera ref="cameraRef" :fov="75" :aspect="width / height" :near="0.1" :far="1000" :position-z="5" :rotation-x="rotationX" :rotation-y="rotationY" />
 </template>

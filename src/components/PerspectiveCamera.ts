@@ -1,20 +1,25 @@
+import Camera from './Camera'
+import { useCamera } from '~/composables/useCamera'
 import { usePerspectiveCamera } from '~/composables/usePerspectiveCamera'
 
 export default defineComponent({
   name: 'PerspectiveCamera',
+  extends: Camera,
   props: {
     fov: Number,
     aspect: Number,
     near: Number,
     far: Number,
-
-    positionZ: Number,
   },
   setup(props) {
-    const { camera } = usePerspectiveCamera(props)
+    const { instance } = usePerspectiveCamera(props)
+
+    // ! is a types bug.
+    // @ts-expect-error multiple level extends types hint error.
+    useCamera(instance, props)
 
     return {
-      camera,
+      instance,
     }
   },
   render: () => null,
