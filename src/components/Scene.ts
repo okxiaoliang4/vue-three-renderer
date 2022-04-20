@@ -1,14 +1,19 @@
 import { Scene } from 'three'
+import Object3D from './Object3D'
 import { sceneSymbol } from './symbol'
+import { useObject3D } from '~/composables/useObject3D'
 
 export default defineComponent({
   name: 'Scene',
-  setup() {
-    const scene = new Scene()
-    provide(sceneSymbol, scene)
+  extends: Object3D,
+  setup(props) {
+    const instance = new Scene()
+    provide(sceneSymbol, instance)
+
+    useObject3D(instance, props)
 
     return {
-      scene,
+      instance,
     }
   },
   render() {

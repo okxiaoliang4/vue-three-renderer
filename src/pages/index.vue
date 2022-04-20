@@ -29,7 +29,7 @@ const scope = effectScope()
 onMounted(() => {
   scope.run(() => {
     useRafFn(() => {
-      rendererRef.value?.renderer?.render(sceneRef.value!.scene, cameraRef.value!.camera)
+      rendererRef.value?.renderer?.render(sceneRef.value!.instance, cameraRef.value!.camera)
       if (meshRef.value) {
         rotationX.value += 0.01
         rotationY.value += 0.01
@@ -45,7 +45,7 @@ onUnmounted(scope.stop)
   <WebGLRenderer
     ref="rendererRef"
     :camera="cameraRef?.camera"
-    :scene="sceneRef?.scene"
+    :scene="sceneRef?.instance"
     :width="width"
     :height="height"
   />

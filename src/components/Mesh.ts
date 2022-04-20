@@ -2,53 +2,29 @@ import type { BufferGeometry, Material, Scene } from 'three'
 import { defineComponent } from 'vue'
 import type { Ref } from 'vue'
 import { geometrySymbol, materialSymbol, sceneSymbol } from './symbol'
+import Object3D from './Object3D'
 import { useMesh } from '~/composables/useMesh'
-import { useObject3d } from '~/composables/useObject3d'
+import { useObject3D } from '~/composables/useObject3D'
 
 export default defineComponent({
   name: 'Mesh',
-  props: {
-    positionX: {
-      type: Number,
-      default: 0,
-    },
-    positionY: {
-      type: Number,
-      default: 0,
-    },
-    positionZ: {
-      type: Number,
-      default: 0,
-    },
-    rotationX: {
-      type: Number,
-      default: 0,
-    },
-    rotationY: {
-      type: Number,
-      default: 0,
-    },
-    rotationZ: {
-      type: Number,
-      default: 0,
-    },
-  },
+  extends: Object3D,
   setup(props) {
     const geometry = ref() as Ref<BufferGeometry>
     const materials = ref() as Ref<Material>
 
-    const mesh = useMesh(geometry, materials)
+    const instance = useMesh(geometry, materials)
 
     const parentScene = inject<Scene>(sceneSymbol)
-    parentScene?.add(mesh)
+    parentScene?.add(instance)
 
     provide(geometrySymbol, geometry)
     provide(materialSymbol, materials)
 
-    useObject3d(mesh, props)
+    useObject3D(instance, props)
 
     return {
-      mesh,
+      instance,
     }
   },
   render() {
