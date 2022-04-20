@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
     MeshBasicMaterial: typeof import('./src/components/MeshBasicMaterial.ts')['default']
     Object3D: typeof import('./src/components/Object3D.ts')['default']
     OrbitControls: typeof import('./src/components/OrbitControls.ts')['default']
+    OrthographicCamera: typeof import('./src/components/OrthographicCamera.ts')['default']
     PerspectiveCamera: typeof import('./src/components/PerspectiveCamera.ts')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
