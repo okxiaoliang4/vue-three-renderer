@@ -10,10 +10,6 @@ export interface UseObject3DOptions {
   rotationY?: MaybeRef<number>
   rotationZ?: MaybeRef<number>
 
-  lookAtX?: MaybeRef<number>
-  lookAtY?: MaybeRef<number>
-  lookAtZ?: MaybeRef<number>
-
   scaleX?: MaybeRef<number>
   scaleY?: MaybeRef<number>
   scaleZ?: MaybeRef<number>

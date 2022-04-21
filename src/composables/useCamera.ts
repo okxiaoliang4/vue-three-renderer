@@ -4,6 +4,9 @@ import type { UseObject3DOptions } from './useObject3D'
 import { useObject3D } from './useObject3D'
 
 export interface UseCameraOptions extends UseObject3DOptions {
+  lookAtX?: MaybeRef<number>
+  lookAtY?: MaybeRef<number>
+  lookAtZ?: MaybeRef<number>
 }
 
 export function useCamera(camera: MaybeRef<Camera>, options: UseCameraOptions = {}) {
