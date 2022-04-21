@@ -28,6 +28,18 @@ export default defineComponent({
       type: Number,
       default: 0,
     },
+    lookAtX: {
+      type: Number,
+      default: 0,
+    },
+    lookAtY: {
+      type: Number,
+      default: 0,
+    },
+    lookAtZ: {
+      type: Number,
+      default: 0,
+    },
   },
   setup(props) {
     const instance = new Object3D()
