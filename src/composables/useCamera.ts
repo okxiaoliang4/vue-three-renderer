@@ -8,4 +8,14 @@ export interface UseCameraOptions extends UseObject3DOptions {
 
 export function useCamera(camera: MaybeRef<Camera>, options: UseCameraOptions = {}) {
   useObject3D(camera, options)
+
+  watchEffect(() => {
+    const {
+      lookAtX = 0,
+      lookAtY = 0,
+      lookAtZ = 0,
+    } = options
+
+    unref(camera).lookAt(unref(lookAtX), unref(lookAtY), unref(lookAtZ))
+  })
 }

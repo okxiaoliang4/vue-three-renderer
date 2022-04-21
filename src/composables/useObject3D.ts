@@ -33,9 +33,6 @@ export function useObject3D(obj: MaybeRef<Object3D>, options: UseObject3DOptions
       rotationX = 0,
       rotationY = 0,
       rotationZ = 0,
-      lookAtX = 0,
-      lookAtY = 0,
-      lookAtZ = 0,
       scaleX = 1,
       scaleY = 1,
       scaleZ = 1,
@@ -49,8 +46,6 @@ export function useObject3D(obj: MaybeRef<Object3D>, options: UseObject3DOptions
     obj.position.set(unref(positionX), unref(positionY), unref(positionZ))
 
     obj.rotation.set(unref(rotationX), unref(rotationY), unref(rotationZ))
-
-    obj.lookAt(unref(lookAtX), unref(lookAtY), unref(lookAtZ))
 
     obj.scale.set(unref(scaleX), unref(scaleY), unref(scaleZ))
 
