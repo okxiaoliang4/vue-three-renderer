@@ -10,9 +10,9 @@ export interface UseObject3DOptions {
   rotationY?: MaybeRef<number>
   rotationZ?: MaybeRef<number>
 
-  // lookAtX?: MaybeRef<number>
-  // lookAtY?: MaybeRef<number>
-  // lookAtZ?: MaybeRef<number>
+  lookAtX?: MaybeRef<number>
+  lookAtY?: MaybeRef<number>
+  lookAtZ?: MaybeRef<number>
 
   scaleX?: MaybeRef<number>
   scaleY?: MaybeRef<number>
@@ -33,9 +33,9 @@ export function useObject3D(obj: MaybeRef<Object3D>, options: UseObject3DOptions
       rotationX = 0,
       rotationY = 0,
       rotationZ = 0,
-      // lookAtX = 0,
-      // lookAtY = 0,
-      // lookAtZ = 0,
+      lookAtX = 0,
+      lookAtY = 0,
+      lookAtZ = 0,
       scaleX = 1,
       scaleY = 1,
       scaleZ = 1,
@@ -45,11 +45,12 @@ export function useObject3D(obj: MaybeRef<Object3D>, options: UseObject3DOptions
     } = options
 
     obj = unref(obj)
+
     obj.position.set(unref(positionX), unref(positionY), unref(positionZ))
 
     obj.rotation.set(unref(rotationX), unref(rotationY), unref(rotationZ))
 
-    // obj.lookAt(unref(lookAtX), unref(lookAtY), unref(lookAtZ))
+    obj.lookAt(unref(lookAtX), unref(lookAtY), unref(lookAtZ))
 
     obj.scale.set(unref(scaleX), unref(scaleY), unref(scaleZ))
 
