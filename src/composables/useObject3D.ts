@@ -1,5 +1,5 @@
 import type { MaybeRef } from '@vueuse/core'
-import type { Object3D, Vector3 } from 'three'
+import type { Object3D } from 'three'
 
 export interface UseObject3DOptions {
   positionX?: MaybeRef<number>
