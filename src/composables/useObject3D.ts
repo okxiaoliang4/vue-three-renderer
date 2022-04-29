@@ -10,6 +10,10 @@ export interface UseObject3DOptions {
   rotationY?: MaybeRef<number>
   rotationZ?: MaybeRef<number>
 
+  lookAtX?: MaybeRef<number>
+  lookAtY?: MaybeRef<number>
+  lookAtZ?: MaybeRef<number>
+
   scaleX?: MaybeRef<number>
   scaleY?: MaybeRef<number>
   scaleZ?: MaybeRef<number>
@@ -21,32 +25,69 @@ export interface UseObject3DOptions {
 }
 
 export function useObject3D(obj: MaybeRef<Object3D>, options: UseObject3DOptions = {}) {
+  usePosition(obj, options)
+
+  useRotation(obj, options)
+
+  useScale(obj, options)
+
+  useLookAt(obj, options)
+
+  const {
+    castShadow = false,
+    receiveShadow = false,
+    name = '',
+  } = options
+
+  watchEffect(() => unref(obj).castShadow = unref(castShadow))
+  watchEffect(() => unref(obj).receiveShadow = unref(receiveShadow))
+  watchEffect(() => unref(obj).name = unref(name))
+}
+
+export function usePosition(obj: MaybeRef<Object3D>, options: UseObject3DOptions = {}) {
   watchEffect(() => {
     const {
       positionX = 0,
       positionY = 0,
       positionZ = 0,
+    } = options
+
+    unref(obj).position.set(unref(positionX), unref(positionY), unref(positionZ))
+  })
+}
+
+export function useRotation(obj: MaybeRef<Object3D>, options: UseObject3DOptions = {}) {
+  watchEffect(() => {
+    const {
       rotationX = 0,
       rotationY = 0,
       rotationZ = 0,
+    } = options
+
+    unref(obj).rotation.set(unref(rotationX), unref(rotationY), unref(rotationZ))
+  })
+}
+
+export function useScale(obj: MaybeRef<Object3D>, options: UseObject3DOptions = {}) {
+  watchEffect(() => {
+    const {
       scaleX = 1,
       scaleY = 1,
       scaleZ = 1,
-      castShadow = false,
-      receiveShadow = false,
-      name = '',
     } = options
 
-    obj = unref(obj)
+    unref(obj).scale.set(unref(scaleX), unref(scaleY), unref(scaleZ))
+  })
+}
 
-    obj.position.set(unref(positionX), unref(positionY), unref(positionZ))
+export function useLookAt(obj: MaybeRef<Object3D>, options: UseObject3DOptions = {}) {
+  watchEffect(() => {
+    const {
+      lookAtX = 0,
+      lookAtY = 0,
+      lookAtZ = 0,
+    } = options
 
-    obj.rotation.set(unref(rotationX), unref(rotationY), unref(rotationZ))
-
-    obj.scale.set(unref(scaleX), unref(scaleY), unref(scaleZ))
-
-    obj.castShadow = unref(castShadow)
-    obj.receiveShadow = unref(receiveShadow)
-    obj.name = unref(name)
+    unref(obj).lookAt(unref(lookAtX), unref(lookAtY), unref(lookAtZ))
   })
 }
