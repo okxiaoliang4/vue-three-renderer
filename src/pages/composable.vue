@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Scene } from 'three'
+import { PerspectiveCamera, Scene } from 'three'
 import { usePerspectiveCamera } from '~/cameras/composables'
 import { useBoxGeometry } from '~/geometries/composables/useBoxGeometry'
 import { useAxesHelper } from '~/helpers/composables/useAxesHelper'
@@ -21,7 +21,8 @@ function useScene() {
   return { scene }
 }
 
-const { instance: camera } = usePerspectiveCamera({
+const camera = new PerspectiveCamera()
+usePerspectiveCamera(camera, {
   fov: 75,
   aspect: unref(width) / unref(height),
   near: 0.1,
