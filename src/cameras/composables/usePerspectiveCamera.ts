@@ -1,5 +1,5 @@
 import type { MaybeRef } from '@vueuse/core'
-import { PerspectiveCamera } from 'three'
+import type { PerspectiveCamera } from 'three'
 import type { UseCameraOptions } from './useCamera'
 import { useCamera } from './useCamera'
 
@@ -10,10 +10,23 @@ export interface UsePerspectiveCameraOptions extends UseCameraOptions {
   far?: MaybeRef<number>
 }
 
-export function usePerspectiveCamera(props: UsePerspectiveCameraOptions) {
-  const instance = new PerspectiveCamera(unref(props.fov), unref(props.aspect), unref(props.near), unref(props.far))
+export function usePerspectiveCamera(camera: MaybeRef<PerspectiveCamera>, props: UsePerspectiveCameraOptions) {
+  useCamera(camera, props)
 
-  useCamera(instance, props)
+  watchEffect(() => {
+    const {
+      fov = 0,
+      aspect = 0,
+      near = 0,
+      far = 0,
+    } = props
 
-  return { instance }
+    const _camera = unref(camera)
+    _camera.fov = unref(fov)
+    _camera.aspect = unref(aspect)
+    _camera.near = unref(near)
+    _camera.far = unref(far)
+  })
+
+  return { instance: camera }
 }

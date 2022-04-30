@@ -1,3 +1,4 @@
+import { PerspectiveCamera } from 'three'
 import Camera from './Camera'
 import { usePerspectiveCamera } from './composables/usePerspectiveCamera'
 
@@ -11,7 +12,9 @@ export default defineComponent({
     far: Number,
   },
   setup(props) {
-    const { instance } = usePerspectiveCamera(props)
+    const instance = new PerspectiveCamera(unref(props.fov), unref(props.aspect), unref(props.near), unref(props.far))
+
+    usePerspectiveCamera(instance, props)
 
     return {
       instance,
