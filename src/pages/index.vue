@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import type SceneVue from '~/components/Scene'
-import type PerspectiveCameraVue from '~/components/PerspectiveCamera'
-import type MeshVue from '~/components/Mesh'
+import type SceneVue from '~/scenes/Scene'
+import type PerspectiveCameraVue from '~/cameras/PerspectiveCamera'
+import type MeshVue from '~/objects/Mesh'
 import type WebGLRendererVue from '~/components/WebGLRenderer.vue'
 
 const width = window.innerWidth
