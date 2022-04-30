@@ -40,6 +40,7 @@ export default defineConfig({
       dirs: [
         'src/cameras',
         'src/components',
+        'src/controls',
         'src/geometries',
         'src/helpers',
         'src/materials',
