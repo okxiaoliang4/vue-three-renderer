@@ -14,12 +14,12 @@ export default defineComponent({
   },
   setup(props) {
     // sync geometry to parent
-    const geometry = useBoxGeometry(props)
+    const { instance } = useBoxGeometry(props)
 
-    useSyncInject(geometrySymbol, geometry)
+    useSyncInject(geometrySymbol, instance)
 
     return {
-      geometry,
+      instance,
     }
   },
   render: () => null,

@@ -32,7 +32,7 @@ usePerspectiveCamera(camera, {
 
 const { scene } = useScene()
 
-const geometry = useBoxGeometry({ width: 1, height: 1, depth: 1 })
+const { instance: geometry } = useBoxGeometry({ width: 1, height: 1, depth: 1 })
 const material = useMeshBasicMaterial({ parameters: { color: 0x00FF00 } })
 
 const cube = useMesh(geometry, material)

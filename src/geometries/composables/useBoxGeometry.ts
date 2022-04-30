@@ -1,6 +1,5 @@
 import type { MaybeRef } from '@vueuse/core'
 import { BoxGeometry } from 'three'
-import type { Ref } from 'vue'
 
 export interface UseBoxGeometryOptions {
   width?: MaybeRef<number>
@@ -12,11 +11,7 @@ export interface UseBoxGeometryOptions {
 }
 
 export function useBoxGeometry(props: UseBoxGeometryOptions) {
-  const geometry = shallowRef() as Ref<BoxGeometry>
+  const instance = computed(() => new BoxGeometry(unref(props.width), unref(props.height), unref(props.depth), unref(props.widthSegments), unref(props.heightSegments), unref(props.depthSegments)))
 
-  watchEffect(() => {
-    geometry.value = new BoxGeometry(unref(props.width), unref(props.height), unref(props.depth), unref(props.widthSegments), unref(props.heightSegments), unref(props.depthSegments))
-  })
-
-  return geometry
+  return { instance }
 }
