@@ -18,6 +18,7 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Scene: typeof import('./src/scenes/Scene.ts')['default']
+    TextGeometry: typeof import('./src/geometries/TextGeometry.ts')['default']
     UseAxesHelper: typeof import('./src/helpers/composables/useAxesHelper.ts')['default']
     UseBoxGeometry: typeof import('./src/geometries/composables/useBoxGeometry.ts')['default']
     UseCamera: typeof import('./src/cameras/composables/useCamera.ts')['default']
@@ -26,6 +27,7 @@ declare module '@vue/runtime-core' {
     UseObject3D: typeof import('./src/objects/composables/useObject3D.ts')['default']
     UseOrthographicCamera: typeof import('./src/cameras/composables/useOrthographicCamera.ts')['default']
     UsePerspectiveCamera: typeof import('./src/cameras/composables/usePerspectiveCamera.ts')['default']
+    UseTextGeometry: typeof import('./src/geometries/composables/useTextGeometry.ts')['default']
     UseWebGLRenderer: typeof import('./src/renderer/composables/useWebGLRenderer.ts')['default']
     WebGLRenderer: typeof import('./src/renderer/WebGLRenderer.vue')['default']
   }

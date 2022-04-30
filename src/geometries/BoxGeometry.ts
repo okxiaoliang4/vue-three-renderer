@@ -13,9 +13,9 @@ export default defineComponent({
     depthSegments: Number,
   },
   setup(props) {
-    // sync geometry to parent
     const { instance } = useBoxGeometry(props)
 
+    // sync geometry to parent
     useSyncInject(geometrySymbol, instance)
 
     return {
