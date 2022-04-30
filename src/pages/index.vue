@@ -53,6 +53,7 @@ onUnmounted(scope.stop)
   />
 
   <Scene ref="sceneRef">
+    <AmbientLight />
     <Mesh
       :rotation-x="rotationX"
       :rotation-y="rotationY"

@@ -5,10 +5,12 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AmbientLight: typeof import('./src/objects/AmbientLight.ts')['default']
     AxesHelper: typeof import('./src/helpers/AxesHelper.ts')['default']
     BoxGeometry: typeof import('./src/geometries/BoxGeometry.ts')['default']
     Camera: typeof import('./src/cameras/Camera.ts')['default']
     Composables: typeof import('./src/cameras/composables/index.ts')['default']
+    Light: typeof import('./src/objects/Light.ts')['default']
     Mesh: typeof import('./src/objects/Mesh.ts')['default']
     MeshBasicMaterial: typeof import('./src/materials/MeshBasicMaterial.ts')['default']
     Object3D: typeof import('./src/objects/Object3D.ts')['default']
