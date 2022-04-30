@@ -1,5 +1,5 @@
 import { Object3D } from 'three'
-import { useObject3D } from '~/composables/useObject3D'
+import { useObject3D } from '~/objects/composables/useObject3D'
 
 export default defineComponent({
   name: 'Object3D',

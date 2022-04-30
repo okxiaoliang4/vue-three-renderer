@@ -1,7 +1,7 @@
 import { Scene } from 'three'
-import Object3D from './Object3D'
-import { sceneSymbol } from './symbol'
-import { useObject3D } from '~/composables/useObject3D'
+import Object3D from '../objects/Object3D'
+import { sceneSymbol } from '../common/symbol'
+import { useObject3D } from '~/objects/composables/useObject3D'
 
 export default defineComponent({
   name: 'Scene',

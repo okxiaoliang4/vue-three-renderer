@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { Scene } from 'three'
-import { useBoxGeometry } from '~/composables/useBoxGeometry'
-import { usePerspectiveCamera } from '~/composables/usePerspectiveCamera'
-import { useMesh } from '~/composables/useMesh'
-import { useWebGLRenderer } from '~/composables/useWebGLRenderer'
-import { useMeshBasicMaterial } from '~/composables/useMeshBasicMaterial'
-import { useAxesHelper } from '~/composables/useAxesHelper'
+import { usePerspectiveCamera } from '~/cameras/composables'
+import { useBoxGeometry } from '~/geometries/composables/useBoxGeometry'
+import { useAxesHelper } from '~/helpers/composables/useAxesHelper'
+import { useMeshBasicMaterial } from '~/materials/composables/useMeshBasicMaterial'
+import { useMesh } from '~/objects/composables/useMesh'
+import { useWebGLRenderer } from '~/renderer/composables/useWebGLRenderer'
 
 const canvasEl = ref()
 const width = ref(window.innerWidth)

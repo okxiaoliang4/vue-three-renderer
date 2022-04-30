@@ -1,5 +1,5 @@
 import Camera from './Camera'
-import { usePerspectiveCamera } from '~/composables/usePerspectiveCamera'
+import { usePerspectiveCamera } from './composables/usePerspectiveCamera'
 
 export default defineComponent({
   name: 'PerspectiveCamera',

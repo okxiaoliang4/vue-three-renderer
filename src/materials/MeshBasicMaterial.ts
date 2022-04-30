@@ -1,7 +1,7 @@
 import type { MeshBasicMaterialParameters } from 'three'
 import type { PropType } from 'vue'
-import { materialSymbol } from './symbol'
-import { useMeshBasicMaterial } from '~/composables/useMeshBasicMaterial'
+import { useMeshBasicMaterial } from './composables/useMeshBasicMaterial'
+import { materialSymbol } from '~/common/symbol'
 import { useSyncInject } from '~/composables/useSyncInject'
 
 export default defineComponent({

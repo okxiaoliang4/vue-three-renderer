@@ -37,6 +37,16 @@ export default defineConfig({
     Components({
       dts: true,
       extensions: ['vue', 'ts'],
+      dirs: [
+        'src/cameras',
+        'src/components',
+        'src/geometries',
+        'src/helpers',
+        'src/materials',
+        'src/objects',
+        'src/renderer',
+        'src/scenes',
+      ],
     }),
 
     // https://github.com/antfu/unocss

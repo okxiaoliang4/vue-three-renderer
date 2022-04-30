@@ -1,5 +1,5 @@
 import Camera from './Camera'
-import { useOrthographicCamera } from '~/composables/useOrthographicCamera'
+import { useOrthographicCamera } from './composables/useOrthographicCamera'
 
 export default defineComponent({
   name: 'OrthographicCamera',

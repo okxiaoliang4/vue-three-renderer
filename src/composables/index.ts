@@ -1,1 +1,1 @@
-export * from './dark'
+export default import.meta.glob('./*/composables/*.ts')

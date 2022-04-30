@@ -1,5 +1,5 @@
-import { geometrySymbol } from './symbol'
-import { useBoxGeometry } from '~/composables/useBoxGeometry'
+import { geometrySymbol } from '../common/symbol'
+import { useBoxGeometry } from './composables/useBoxGeometry'
 import { useSyncInject } from '~/composables/useSyncInject'
 
 export default defineComponent({

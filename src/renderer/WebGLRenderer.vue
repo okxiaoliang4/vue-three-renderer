@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { PerspectiveCamera, Scene } from 'three'
 import type { PropType } from 'vue'
-import { useWebGLRenderer } from '~/composables/useWebGLRenderer'
+import { useWebGLRenderer } from './composables/useWebGLRenderer'
 
 const props = defineProps({
   camera: {
@@ -12,11 +12,11 @@ const props = defineProps({
   },
   width: {
     type: Number,
-    default: window.innerWidth,
+    default: 300,
   },
   height: {
     type: Number,
-    default: window.innerHeight,
+    default: 300,
   },
 })
 

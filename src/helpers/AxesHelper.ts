@@ -1,8 +1,8 @@
 import { Color } from 'three'
 import type { Scene } from 'three'
 import type { PropType } from 'vue'
-import { sceneSymbol } from './symbol'
-import { useAxesHelper } from '~/composables/useAxesHelper'
+import { sceneSymbol } from '../common/symbol'
+import { useAxesHelper } from './composables/useAxesHelper'
 
 export default defineComponent({
   name: 'AxesHelper',

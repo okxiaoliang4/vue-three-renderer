@@ -1,6 +1,6 @@
 import { Camera } from 'three'
-import Object3D from './Object3D'
-import { useCamera } from '~/composables/useCamera'
+import Object3D from '../objects/Object3D'
+import { useCamera } from './composables/useCamera'
 
 export default defineComponent({
   name: 'Camera',

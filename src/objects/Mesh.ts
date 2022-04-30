@@ -1,10 +1,10 @@
 import type { BufferGeometry, Material, Scene } from 'three'
 import { defineComponent } from 'vue'
 import type { Ref } from 'vue'
-import { geometrySymbol, materialSymbol, sceneSymbol } from './symbol'
-import Object3D from './Object3D'
-import { useMesh } from '~/composables/useMesh'
-import { useObject3D } from '~/composables/useObject3D'
+import Object3D from '../objects/Object3D'
+import { geometrySymbol, materialSymbol, sceneSymbol } from '~/common/symbol'
+import { useMesh } from '~/objects/composables/useMesh'
+import { useObject3D } from '~/objects/composables/useObject3D'
 
 export default defineComponent({
   name: 'Mesh',
