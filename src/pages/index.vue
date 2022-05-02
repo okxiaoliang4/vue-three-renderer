@@ -22,20 +22,11 @@ function toggleColor() {
 
 useIntervalFn(toggleColor, 1000)
 
-const rotationX = ref(0)
-const rotationY = ref(0)
-const boxWidth = ref(1)
-const textSize = ref(1)
-
 const scope = effectScope()
 onMounted(() => {
   scope.run(() => {
     useRafFn(() => {
       rendererRef.value?.renderer?.render(sceneRef.value!.instance, cameraRef.value!.instance)
-      rotationX.value += 0.01
-      rotationY.value += 0.01
-      boxWidth.value += 0.01
-      textSize.value += 0.01
     })
   })
 })
@@ -50,16 +41,18 @@ onUnmounted(scope.stop)
     :scene="sceneRef?.instance"
     :width="width"
     :height="height"
+    clear-color="#fff"
   />
 
   <Scene ref="sceneRef">
     <AmbientLight />
     <Mesh
-      :rotation-x="rotationX"
-      :rotation-y="rotationY"
+      :position-x="0.5"
+      :position-y="0.5"
+      :position-z="0.5"
     >
       <BoxGeometry
-        :width="boxWidth"
+        :width="1"
         :height="1"
         :depth="1"
         :width-segments="1"
@@ -68,11 +61,21 @@ onUnmounted(scope.stop)
       />
       <MeshBasicMaterial :parameters="materialParameters" />
     </Mesh>
-    <Mesh>
-      <TextGeometry
-        text="1"
-        :size="textSize"
-      >
+    <Mesh :rotation-x="-0.5 * Math.PI">
+      <PlaneGeometry
+        :width="100"
+        :height="100"
+        :width-segments="1"
+        :height-segments="1"
+      />
+      <MeshBasicMaterial :parameters="{ color: 0xEEEEEE }" />
+    </Mesh>
+    <Mesh
+      :position-x="3"
+      :position-y="3"
+      :position-z="3"
+    >
+      <TextGeometry text="1">
         <Font :source="fontPath" />
       </TextGeometry>
 
@@ -94,5 +97,7 @@ onUnmounted(scope.stop)
     :near="0.1"
     :far="1000"
     :position-z="5"
+    :position-x="5"
+    :position-y="5"
   />
 </template>
