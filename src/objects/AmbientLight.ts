@@ -10,7 +10,7 @@ export default defineComponent({
   name: 'AmbientLight',
   extends: Light,
   setup(props) {
-    const instance = new AmbientLight() // soft white light
+    const instance = new AmbientLight()
     const parentScene = inject<Scene>(sceneSymbol)
     parentScene?.add(instance)
 

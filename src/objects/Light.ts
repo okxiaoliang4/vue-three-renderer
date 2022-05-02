@@ -18,7 +18,7 @@ export default defineComponent({
     intensity: { type: Number, default: 1 },
   },
   setup(props) {
-    const instance = new Light(0x404040) // soft white light
+    const instance = new Light()
     const parentScene = inject<Scene>(sceneSymbol)
     parentScene?.add(instance)
 
@@ -42,6 +42,7 @@ export interface UseLightOptions {
 export function useLight(light: MaybeRef<Light>, options: UseLightOptions = {}) {
   watchEffect(() => {
     const { color = 0xFFFFFF, intensity = 1 } = options
+
     unref(light).color = new Color(unref(color))
     unref(light).intensity = unref(intensity)
   })
