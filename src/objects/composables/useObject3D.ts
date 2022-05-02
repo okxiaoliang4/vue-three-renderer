@@ -6,6 +6,8 @@ export interface UseObject3DOptions {
   positionY?: MaybeRef<number>
   positionZ?: MaybeRef<number>
 
+  rotationType?: MaybeRef<RotationType>
+
   rotationX?: MaybeRef<number>
   rotationY?: MaybeRef<number>
   rotationZ?: MaybeRef<number>
@@ -24,14 +26,14 @@ export interface UseObject3DOptions {
   name?: MaybeRef<string>
 }
 
+export type RotationType = 'rotation' | 'quaternion' | 'lookAt'
+
 export function useObject3D(obj: MaybeRef<Object3D>, options: UseObject3DOptions = {}) {
   usePosition(obj, options)
 
   useRotation(obj, options)
 
   useScale(obj, options)
-
-  useLookAt(obj, options)
 
   const {
     castShadow = false,
@@ -62,9 +64,16 @@ export function useRotation(obj: MaybeRef<Object3D>, options: UseObject3DOptions
       rotationX = 0,
       rotationY = 0,
       rotationZ = 0,
+      lookAtX = 0,
+      lookAtY = 0,
+      lookAtZ = 0,
+      rotationType = 'rotation',
     } = options
 
-    unref(obj).rotation.set(unref(rotationX), unref(rotationY), unref(rotationZ))
+    if (unref(rotationType) === 'rotation')
+      unref(obj).rotation.set(unref(rotationX), unref(rotationY), unref(rotationZ))
+    else if (unref(rotationType) === 'lookAt')
+      unref(obj).lookAt(unref(lookAtX), unref(lookAtY), unref(lookAtZ))
   })
 }
 
@@ -77,17 +86,5 @@ export function useScale(obj: MaybeRef<Object3D>, options: UseObject3DOptions = 
     } = options
 
     unref(obj).scale.set(unref(scaleX), unref(scaleY), unref(scaleZ))
-  })
-}
-
-export function useLookAt(obj: MaybeRef<Object3D>, options: UseObject3DOptions = {}) {
-  watchEffect(() => {
-    const {
-      lookAtX = 0,
-      lookAtY = 0,
-      lookAtZ = 0,
-    } = options
-
-    unref(obj).lookAt(unref(lookAtX), unref(lookAtY), unref(lookAtZ))
   })
 }
