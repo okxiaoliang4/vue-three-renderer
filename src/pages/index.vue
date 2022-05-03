@@ -45,7 +45,7 @@ onUnmounted(scope.stop)
   />
 
   <Scene ref="sceneRef">
-    <AmbientLight />
+    <AmbientLight color="#ff0000" />
     <Mesh
       :position-x="0.5"
       :position-y="0.5"
@@ -59,7 +59,7 @@ onUnmounted(scope.stop)
         :height-segments="1"
         :depth-segments="1"
       />
-      <MeshBasicMaterial :parameters="materialParameters" />
+      <LineBasicMaterial />
     </Mesh>
     <Mesh :rotation-x="-0.5 * Math.PI">
       <PlaneGeometry
@@ -68,7 +68,7 @@ onUnmounted(scope.stop)
         :width-segments="1"
         :height-segments="1"
       />
-      <MeshBasicMaterial :parameters="{ color: 0xEEEEEE }" />
+      <MeshBasicMaterial :color="0xEEEEEE" />
     </Mesh>
     <Mesh
       :position-x="3"
@@ -79,7 +79,7 @@ onUnmounted(scope.stop)
         <Font :source="fontPath" />
       </TextGeometry>
 
-      <MeshBasicMaterial :parameters="materialParameters" />
+      <MeshBasicMaterial v-bind="materialParameters" />
     </Mesh>
     <AxesHelper />
   </Scene>

@@ -1,14 +1,14 @@
-import { MeshBasicMaterial } from 'three'
+import { MeshStandardMaterial } from 'three'
 import Material from './Material'
 import { useMaterial } from './composables/useMaterial'
 import { materialSymbol } from '~/common/symbol'
 import { useSyncInject } from '~/composables/useSyncInject'
 
 export default defineComponent({
-  name: 'MeshBasicMaterial',
+  name: 'MeshStandardMaterial',
   extends: Material,
   setup(props, { attrs }) {
-    const instance = new MeshBasicMaterial()
+    const instance = new MeshStandardMaterial()
 
     useMaterial(instance, attrs)
 
