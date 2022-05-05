@@ -41,15 +41,25 @@ onUnmounted(scope.stop)
     :scene="sceneRef?.instance"
     :width="width"
     :height="height"
+    :shadow-map-enabled="true"
     clear-color="#fff"
   />
 
   <Scene ref="sceneRef">
-    <AmbientLight color="#ff0000" />
+    <DirectionalLight
+      :position-x="20"
+      :position-y="20"
+      :position-z="20"
+      color="#ffffff"
+      :intensity="2"
+      cast-shadow
+    />
     <Mesh
       :position-x="0.5"
       :position-y="0.5"
       :position-z="0.5"
+      cast-shadow
+      receive-shadow
     >
       <BoxGeometry
         :width="1"
@@ -59,27 +69,33 @@ onUnmounted(scope.stop)
         :height-segments="1"
         :depth-segments="1"
       />
-      <LineBasicMaterial />
+      <MeshStandardMaterial v-bind="materialParameters" />
     </Mesh>
-    <Mesh :rotation-x="-0.5 * Math.PI">
+    <Mesh
+      :rotation-x="-0.5 * Math.PI"
+      cast-shadow
+      receive-shadow
+    >
       <PlaneGeometry
         :width="100"
         :height="100"
         :width-segments="1"
         :height-segments="1"
       />
-      <MeshBasicMaterial :color="0xEEEEEE" />
+      <MeshStandardMaterial :color="0xEEEEEE" />
     </Mesh>
     <Mesh
       :position-x="3"
       :position-y="3"
       :position-z="3"
+      cast-shadow
+      receive-shadow
     >
       <TextGeometry text="1">
         <Font :source="fontPath" />
       </TextGeometry>
 
-      <MeshBasicMaterial v-bind="materialParameters" />
+      <MeshStandardMaterial v-bind="materialParameters" />
     </Mesh>
     <AxesHelper />
   </Scene>

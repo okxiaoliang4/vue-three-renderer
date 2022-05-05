@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { PerspectiveCamera, Scene } from 'three'
-import { Color } from 'three'
+import type { PerspectiveCamera, Scene, ShadowMapType } from 'three'
+import { Color, PCFSoftShadowMap } from 'three'
 import type { PropType } from 'vue'
 import { useWebGLRenderer } from './composables/useWebGLRenderer'
 
@@ -23,6 +23,11 @@ const props = defineProps({
     type: [Color, String, Number],
     default: 0xFFFFFF,
   },
+  shadowMapEnabled: Boolean,
+  shadowMapType: {
+    type: Number as PropType<ShadowMapType>,
+    default: PCFSoftShadowMap,
+  },
 })
 
 const canvas = ref()
@@ -31,6 +36,7 @@ const { renderer } = useWebGLRenderer(canvas, reactive({
   width: props.width,
   height: props.height,
   clearColor: props.clearColor,
+  shadowMapEnabled: props.shadowMapEnabled,
 }))
 
 defineExpose({

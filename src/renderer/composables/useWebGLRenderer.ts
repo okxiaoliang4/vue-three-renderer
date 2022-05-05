@@ -6,6 +6,7 @@ export interface UseWebGLRendererOptions {
   width: MaybeRef<number>
   height: MaybeRef<number>
   clearColor?: MaybeRef<ColorRepresentation>
+  shadowMapEnabled?: MaybeRef<boolean>
 }
 
 export function useWebGLRenderer(canvas: MaybeRef<HTMLCanvasElement>, options: UseWebGLRendererOptions) {
@@ -17,15 +18,24 @@ export function useWebGLRenderer(canvas: MaybeRef<HTMLCanvasElement>, options: U
     })
   })
 
-  // reactive size
   watchEffect(() => {
-    renderer.value?.setSize(unref(options.width), unref(options.height))
-  })
+    const {
+      width = 300,
+      height = 300,
+      clearColor = 0xFFFFFF,
+      shadowMapEnabled = false,
+    } = options
 
-  watchEffect(() => {
-    const { clearColor = 0xFFFFFF } = options
+    if (renderer.value) {
+      // set renderer size
+      renderer.value.setSize(unref(width), unref(height))
 
-    renderer.value?.setClearColor(new Color(unref(clearColor)), 1) // 设置背景
+      // set background color
+      renderer.value.setClearColor(new Color(unref(clearColor)), 1)
+
+      // enable shadow map
+      renderer.value.shadowMap.enabled = unref(shadowMapEnabled) ?? false
+    }
   })
 
   return { renderer }
