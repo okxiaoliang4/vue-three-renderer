@@ -40,6 +40,8 @@ export default defineComponent({
       type: Number,
       default: 0,
     },
+    receiveShadow: Boolean,
+    castShadow: Boolean,
   },
   setup(props) {
     const instance = new Object3D()

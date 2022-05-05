@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
     BoxGeometry: typeof import('./src/geometries/BoxGeometry.ts')['default']
     Camera: typeof import('./src/cameras/Camera.ts')['default']
     Composables: typeof import('./src/cameras/composables/index.ts')['default']
+    DirectionalLight: typeof import('./src/objects/DirectionalLight.ts')['default']
     Light: typeof import('./src/objects/Light.ts')['default']
     LineBasicMaterial: typeof import('./src/materials/LineBasicMaterial.ts')['default']
     Material: typeof import('./src/materials/Material.ts')['default']
