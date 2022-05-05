@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { PerspectiveCamera, Scene } from 'three'
+import { MeshBasicMaterial, PerspectiveCamera, Scene } from 'three'
 import { usePerspectiveCamera } from '~/cameras/composables'
 import { useBoxGeometry } from '~/geometries/composables/useBoxGeometry'
 import { useAxesHelper } from '~/helpers/composables/useAxesHelper'
-import { useMeshBasicMaterial } from '~/materials/composables/useMeshBasicMaterial'
+import { useMaterial } from '~/materials/composables/useMaterial'
 import { useMesh } from '~/objects/composables/useMesh'
 import { useWebGLRenderer } from '~/renderer/composables/useWebGLRenderer'
 
@@ -33,7 +33,8 @@ usePerspectiveCamera(camera, {
 const { scene } = useScene()
 
 const { instance: geometry } = useBoxGeometry({ width: 1, height: 1, depth: 1 })
-const material = useMeshBasicMaterial({ parameters: { color: 0x00FF00 } })
+const material = new MeshBasicMaterial({ color: 0x00FF00 })
+useMaterial(material, {})
 
 const cube = useMesh(geometry, material)
 
