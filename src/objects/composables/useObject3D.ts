@@ -35,15 +35,26 @@ export function useObject3D(obj: MaybeRef<Object3D>, options: UseObject3DOptions
 
   useScale(obj, options)
 
+  useShadow(obj, options)
+
   const {
-    castShadow = false,
-    receiveShadow = false,
     name = '',
   } = options
 
-  watchEffect(() => unref(obj).castShadow = unref(castShadow))
-  watchEffect(() => unref(obj).receiveShadow = unref(receiveShadow))
   watchEffect(() => unref(obj).name = unref(name))
+}
+
+export function useShadow(obj: MaybeRef<Object3D>, options: UseObject3DOptions = {}) {
+  watchEffect(() => {
+    const {
+      castShadow = false,
+      receiveShadow = false,
+    } = options
+    watchEffect(() => {
+      unref(obj).castShadow = unref(castShadow)
+      unref(obj).receiveShadow = unref(receiveShadow)
+    })
+  })
 }
 
 export function usePosition(obj: MaybeRef<Object3D>, options: UseObject3DOptions = {}) {

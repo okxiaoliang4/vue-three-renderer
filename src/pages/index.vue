@@ -50,8 +50,10 @@ onUnmounted(scope.stop)
       :position-x="20"
       :position-y="20"
       :position-z="20"
+      :intensity="1"
+      :shadow-map-size-width="4096"
+      :shadow-map-size-height="4096"
       color="#ffffff"
-      :intensity="2"
       cast-shadow
     />
     <Mesh
