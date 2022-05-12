@@ -9,6 +9,27 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Unocss from 'unocss/vite'
 
 export default defineConfig({
+  build: {
+    lib: {
+      entry: path.resolve(__dirname, 'src/lib.ts'),
+      name: 'lib',
+      formats: [
+        'es',
+        'cjs',
+        'umd',
+      ],
+      fileName: format => `lib.${format}.js`,
+    },
+    rollupOptions: {
+      external: ['vue', 'three'],
+      output: {
+        globals: {
+          vue: 'Vue',
+          three: 'THREE',
+        },
+      },
+    },
+  },
   resolve: {
     alias: {
       '~/': `${path.resolve(__dirname, 'src')}/`,
